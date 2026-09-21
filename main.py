@@ -7,7 +7,7 @@ import re
 from collections import Counter
 from nltk.corpus import stopwords
 
-URL = "https://www.youtube.com/watch?v=isHuob1qQ34"
+URL = "https://www.youtube.com/watch?v=Q8IqC7L-NjQ"
 
 
 def extrair_video_id(url: str) -> str:
@@ -18,7 +18,7 @@ def extrair_video_id(url: str) -> str:
 PALAVRAS_EXTRAS = {
     "ta", "tá", "cara", "vai", "né", "tipo", "aí", "então", "assim", "tal", "gente", "irmão", "vamos", "agora", "pro", "aqui", "porque", "lá", "ter", "acho", "tô", "vou", "ali", "acha",
     "seguinte", "fala", "falou", "falar", "além", "__", "quero", "fez", "pode", "faz", "sei", "sabe", "tava", "vem", "conta", "coisa", "tudo", "qu", "ó", "pr", "falando", "mim" , "falei"
-, "deixa", "deixar", "fazer" , "contra", "quer", "disso", "qualquer", "vão", "sob", "pessoas", "onde", "inclusive", "têm", "sobre", "pois", "deu", "ainda"
+, "deixa", "deixar", "fazer" , "contra", "quer", "disso", "qualquer", "vão", "sob", "pessoas", "onde", "inclusive", "têm", "sobre", "pois", "deu", "ainda", ""
 }
 
 def limpar_texto(texto: str, palavras_extras: set[str] = PALAVRAS_EXTRAS) -> list[str]:
@@ -42,7 +42,7 @@ texto_bruto = formatter.format_transcript(fetched_transcript)
 tokens = limpar_texto(texto_bruto)
 frequencias = contar_frequencias(tokens)
 
-print(frequencias.most_common(100))  # as 100 palavras mais frequentes, para conferir
+print(frequencias.most_common(100))  # print 100 palavras mais frequentes, para conferir
 
 nuvem = WordCloud(width=1200, height=800, background_color='white', max_words=80, prefer_horizontal=0.9).generate_from_frequencies(frequencias)
 plt.imshow(nuvem, interpolation='bilinear')
